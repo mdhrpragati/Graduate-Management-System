@@ -1,0 +1,60 @@
+SELECT:
+	SELECT [fieldnames] 
+	AS [alias]
+	FROM [tablename] 
+	WHERE [criteria] 
+	ORDER BY [fieldname to sort on] [DESC]
+	LIMIT [offset, maxrows]
+You can set numerous other parameters, but these are the most commonly used:
+	- SELECT [fieldnames]: First decide what specific fieldnames you want to retrieve; if you want
+to see them all, you simply insert *.
+	- AS: You use the alias to group two or more fieldnames together so that you can reference them
+later as one giant variable. An example would be:
+SELECT first_name, last_name AS full_name. . . ORDER BY full_name . . .
+You cannot use the AS parameter with the WHERE parameter, because this is a limitation of MySQL.
+When the WHERE clause is executed, the column value may not be known.
+	- FROM: This is pretty self-explanatory: You just need to name the table or tables you are pulling
+the data from.
+	- WHERE: List your criteria for filtering out the data, as described in the following section. 
+	- ORDER BY: Use this parameter if you want the data sorted on a particular field; if you want the
+results returned in descending order, add DESC.
+	- LIMIT: This enables you to limit the number of results returned and offset the first record
+returned to whatever number you choose. An example would be:
+LIMIT 9, 10
+
+
+Referencing Two Tables:
+	$query = “SELECT customers.name, orders.order_total
+	FROM customers, orders
+	WHERE customers.cust_ID = orders.cust_ID”;
+	//retrieves customers’ names from customers table and order_total from 
+	//orders table where the cust_ID field in the customers table equals the
+	//cust_ID field in the orders table. 
+
+JOINing tables
+	$query = “SELECT movie_name, movietype_label “ .
+	“FROM movie “ .
+	“LEFT JOIN movietype “ .
+	“ON movie_type = movietype_id “ .
+	“WHERE movie.movie_year>1990 “ .
+	“ORDER BY movie_type”;
+
+INSERTing into Tables
+
+	$type = “INSERT INTO movietype (movietype_id, movietype_label) “ .
+	“VALUES (1,’Sci Fi’), “ .
+	“(2, ‘Drama’), “ .
+	“(3, ‘Adventure’), “ .
+	“(4, ‘War’), “ .
+	“(5, ‘Comedy’), “ .
+	“(6, ‘Horror’), “ .
+	“(7, ‘Action’), “ .
+	“(8, ‘Kids’)”;
+
+UPDATEing tables
+
+	$update = “UPDATE movie SET “ .
+	“movie_running_time=102, “ .
+	“movie_cost=10, “ .
+	“movie_takings=15 “ .
+	“WHERE movie_id = 1”;

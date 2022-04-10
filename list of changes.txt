@@ -1,0 +1,20 @@
+Things done:
+
+1. Added (padding-bottom:10px) in "hero-unit" class of bootstrap.css
+2. When going into index.php after being logged in, redirecting to respective page.
+3. Comment out line 4620 of bootstrap.css (line says: background-color: transparent)
+4. Including "session.php" in each secured page to make sure that the page is not directly accessed
+5. Edited the "adminpassword.php" so that it checks the old password as well
+6. Repaired new_user.php
+
+Tasks to do:
+
+1. Check that only admin is able to view the admin pages and other users aren't
+2. PROBLEM: What if the admin creates a class that has already been created???
+	->Currently the code just simply adds that record into the database
+3. Also the code does not check for duplicate courses during adding a new course to the semester
+4. The nav bar does not show which page we are currently on. 
+	--- We can solve this by making the navbar a function
+5. We need a confirmation(probably javascript) before deleting anything (course/student details/etc)
+6. When a course is deleted, the record referencing it in the "class" table should also be removed.
+7. edit_course is still remaining(While trying to edit a course, you get a description of the course rather than an EDIT form)

@@ -1,0 +1,15 @@
+About grade.php
+
+-First checks the user login
+
+-Selects all the "batch" from the "class" table since the batch and courses are registered in that table
+
+-Since no form has been submitted yet, the control goes down to the html where a form is setup to display the batch that we acquired earlier. The semester is however a static list of I-IV. The name of the submit button for this form is initial_submit.
+
+-//////When this submit button is pressed, it uses THE LEFT JOIN to get the course name and the course code in one go otherwise we could have just taken the course code from one table then used in to get the course name. These are used to produce the list of courses and their codes. (CHANGED)
+
+-Then links are made of each of the courses with super globals "action=addgrade" and "code=respective course code"
+
+-When any of the links are clicked, the page gathers the list of students in "grade" table where the course_code is equal to the code in the url.
+
+-If there are no students in the given course, it notifies by saying so.However if there are students then it generates a table of those students in which the reg_no and the name of the student are displayed, and the grade and remarks can be edited.

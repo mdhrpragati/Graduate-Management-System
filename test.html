@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The JiT RegEx Machine</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript">
+//<![CDATA[
+if (window.addEventListener) {
+      window.addEventListener("load",setupEvents,false);
+   } else if (window.attachEvent) {
+      window.attachEvent("onload", setupEvents);
+   } else {
+      window.onload=setupEvents;
+}
+function setupEvents(evnt) {
+   document.someForm.onsubmit=validateField;
+}
+function validateField(evnt) {
+	var rgEx = new RegExp(document.someForm.text1.value);
+  var OK = rgEx.exec(document.someForm.text2.value);
+  // result and print out
+  if (!OK) {
+     document.someForm.text3.value = "Not a match";
+  } else {
+     document.someForm.text3.value = "The Pattern matched!";
+  }
+  return false;
+}
+//]]>
+</script>
+</head>
+<body>
+<form name="someForm" style="padding: 10px"><!-- \w[\^\W][@]\w[.].{3} -->
+Regular Expression: <input type="text" name="text1" /><br /><br />
+<textarea name="text2" cols=50 rows=10></textarea><br />
+Result: <input type="text" name="text3" /><br /><br />
+<input type="submit" value="Check RegExp" />
+</form>
+</body>
+</html>

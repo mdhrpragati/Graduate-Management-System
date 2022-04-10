@@ -1,0 +1,32 @@
+About report.php (Report section: main page)
+
+-Selects course_code and class_id from table "student_grade"
+-Using a loop, it creates separate arrays containing duplicate course_code and class_id(using extract on an associative array)
+-Again using array_unique(), it creates an array containing non-duplicate course_codes
+-Then it breaks the "class_id" into batch and semester using the function substr() and similarly creates separate arrays containing non-duplicate batch and semesters
+-There are three forms for: Individual Reports, Subjectwise Reports and Classwise Reports which are redirected to pages individual.php, subjectwise.php and classwise.php respectively.
+-The select boxes for all the three forms are filled using the data that was gathered earlier.
+
+About individual.php (Report section: Generating Individual Reports Section)
+-Checks to see if the entered registration number is present in the database
+-If the reg_no is present, then it makes an array of associative arrays of the grades and the rest in the "student_grade" table
+-Then it extracts the information about the student with the given reg_no from the "student" table
+-It then obtains an array containing non-duplicate class_ids to get the semester
+-Using the obtained array, it produces another array of semesters which then is used to generate the grade report of each semester of the student.
+
+About subjectwise.php (Report section: Generating Subjectwise Reports Section)
+-It selects all the records from "student_grade" table that have the course_code and class_id given to it by the previous form
+-It puts them in another array "Grade[]";
+-It selects the student first_name, middle_name, last_name from "student" table.
+-It loops until all the students in the course have been listed in the table.
+
+About classwise.php (Report section: Generating Classwise Reports Section)
+-The class_id is constructed using the batch and the semester and then used to select all the records from "student_grade" that have the class_id
+-Then it creates a multi-dimentional array of the records that have been selected
+-Using this multidimentional array, sorted arrays of course_code and registration numbers are made
+-Then a loop is run for each of the registration numbers and a table row is created for the record
+
+Problems in result section:
+-Forgot to check if the student info is there or not, so errors are occuring
+-If the grade has not been assigned, "Not assigned" can be displayed
+-It is not clear if the student is enrolled in a course in the classwise report
